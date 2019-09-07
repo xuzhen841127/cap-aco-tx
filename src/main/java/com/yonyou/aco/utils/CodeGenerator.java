@@ -20,7 +20,13 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
-// 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
+/**
+ * <p> 概述：MybatisPlus 代码生成器
+ * <p> 功能：MybatisPlus 代码生成器
+ * <p> 作者：徐真
+ * <p> 创建时间：2019年9月7日
+ * <p> 类调用特殊情况：无
+ */
 public class CodeGenerator {
 
 	/**
