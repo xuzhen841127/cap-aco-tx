@@ -1,0 +1,167 @@
+.list {
+	margin: 0px;
+}
+
+.list .item-text {
+	line-height: normal;
+	height: 30px;
+}
+
+.list .item-title {
+	font-weight: 400;
+}
+
+.ios .dialog-button {
+	padding-top: 10px;
+	line-height: normal;
+}
+
+.ios .actions-button-text {
+	line-height: normal;
+	padding-top: 15px;
+}
+
+.page {
+	background-color: #ffffff !important;
+}
+
+.ios .icon-back:after {
+	margin-top: -12px;
+	line-height: normal;
+}
+
+.ios .ptr-arrow {
+	height: 65px;
+	margin-left: -6px;
+	margin-top: -35px;
+}
+
+.ios .infinite-scroll-preloader {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.md .infinite-scroll-preloader {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.toast .toast-text {
+	line-height: normal;
+}
+
+.tabbar-labels .tabbar-label {
+	font-size: 14px;
+}
+
+.ios .button {
+	line-height: normal;
+}
+
+.demo-sheet-swipe-to-close, .demo-sheet-swipe-to-step { -
+	-f7-sheet-bg-color: #fff; -
+	-f7-sheet-border-color: transparent;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden;
+}
+
+.swipe-handler {
+	height: 16px;
+	position: absolute;
+	left: 0;
+	width: 100%;
+	top: 0;
+	background: #fff;
+	cursor: pointer;
+	z-index: 10;
+}
+
+.swipe-handler:after {
+	content: '';
+	width: 36px;
+	height: 6px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -18px;
+	margin-top: -3px;
+	border-radius: 3px;
+	background: #666;
+}
+
+.navbar {
+	height: 44px;
+}
+
+.navbar-inner {
+	height: 44px;
+}
+
+.notifiCss {
+	background-color: #D4E8F6;
+}
+
+/* Sheet Swipe To Close */
+.demo-popup-swipe-handler {
+  --f7-popup-border-radius: 15px 15px 0 0;
+  --f7-popup-tablet-border-radius: 15px;
+  --f7-page-bg-color: #fff;
+  --f7-block-strong-border-color: transparent;
+  height: calc(100% - var(--f7-navbar-height) - var(--f7-statusbar-height));
+  top: calc(var(--f7-navbar-height) + var(--f7-statusbar-height))
+}
+
+.demo-popup-swipe-handler .page-content {
+  padding-top: 16px;
+}
+
+.demo-sheet-swipe-to-close, .demo-sheet-swipe-to-step {
+  --f7-sheet-bg-color: #fff;
+  --f7-sheet-border-color: transparent;
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+}
+
+.swipe-handler {
+  height: 16px;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0;
+  background: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.swipe-handler:after {
+  content: '';
+  width: 36px;
+  height: 6px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -18px;
+  margin-top: -3px;
+  border-radius: 3px;
+  background: #666;
+}
+
+.md .tabbar-labels a.link, .md .tabbar-labels a.tab-link {
+	padding-top: 0px;
+}
+
+.ios .searchbar-icon {
+	line-height: normal;
+	margin-top: -12px;
+}
+
+.ios .searchbar input[type=search] {
+	line-height: normal;
+	padding-right: 0px;
+}
+
+.bjgdClass {
+	background: url('images/bjgd.png') no-repeat;
+	background-position: 95% 90%;
+	background-size: 64px;
+}

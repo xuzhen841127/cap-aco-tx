@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yonyou.aco.realpay.mapper.RealpayMapper">
+	<select id="findRealpayTotal" resultType="java.lang.Integer" parameterType="com.yonyou.aco.realpay.entity.RealpayEntity">
+		SELECT COUNT(*) FROM DD_REALPAY WHERE USER_CODE=#{userCode}
+	</select>
+	
+	<!-- <select id="selectCountryPlusById" resultMap="countryPlusResultMap">
+        SELECT R.REALPAY_ID.country_id as country_id,
+                country,
+                country.last_update as last_update,
+                city_id,
+                city,
+                city.country_id as city_country_id,
+                city.last_update as city_last_update
+        from country left join city on  country.country_id = city.country_id
+        where country.country_id=#{id}
+    </select>
+    
+    <resultMap id="countryPlusResultMap" type="canger.study.chapter04.bean.CountryPlus">
+        <id column="country_id" property="id"/>
+        <result column="country" property="name"/>
+        <result column="last_update" property="lastUpdate"/>
+        <collection property="cityList" ofType="canger.study.chapter04.bean.City">
+            <id column="city_id" property="id"/>
+            <result column="city" property="name"/>
+            <result column="city_country_id" property="countryId"/>
+            <result column="city_last_update" property="lastUpdate"/>
+        </collection>
+    </resultMap> -->
+</mapper>

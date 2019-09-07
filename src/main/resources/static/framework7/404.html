@@ -1,0 +1,23 @@
+<template>
+	<div class="page no-navbar cached">
+		<div class="page-content">
+			<div style="padding-top: 180px;">
+				<a href="#" @click="toHome">
+					<img alt="" src="../views/aco/mobile/h5mobile/framework7/img/404.jpg" width="100%;">
+				</a>
+			</div>
+		</div>
+	</div>
+</template>
+<script>
+	return {
+		methods : {
+			toHome : function() {
+				view.router.navigate('/', {
+					reloadCurrent: false,
+					clearPreviousHistory: true
+				});
+			}
+		}
+	}
+</script>
