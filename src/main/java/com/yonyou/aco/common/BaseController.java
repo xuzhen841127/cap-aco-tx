@@ -6,11 +6,11 @@ import com.yonyou.aco.plan.service.IPlanService;
 import com.yonyou.aco.realpay.service.IRealpayService;
 
 /**
- * <p> ¸ÅÊö£ºController»ùÀà
- * <p> ¹¦ÄÜ£ºController»ùÀà
- * <p> ×÷Õß£ºĞìÕæ
- * <p> ´´½¨Ê±¼ä£º2019Äê9ÔÂ7ÈÕ
- * <p> Ààµ÷ÓÃÌØÊâÇé¿ö£ºÎŞ
+ * <p> æ¦‚è¿°ï¼šControlleråŸºç±»ï¼Œæ‰€æœ‰controllerç»§æ‰¿
+ * <p> åŠŸèƒ½ï¼šç»Ÿä¸€ç®¡ç†Controllerä¸­ï¼Œéœ€è¦Springä¾èµ–æ³¨å…¥çš„beanå¯¹è±¡
+ * <p> ä½œè€…ï¼šå¾çœŸ
+ * <p> åˆ›å»ºæ—¶é—´ï¼š2019å¹´9æœˆ7æ—¥
+ * <p> ç±»è°ƒç”¨ç‰¹æ®Šæƒ…å†µï¼šæ— 
  */
 public class BaseController {
 	@Autowired
