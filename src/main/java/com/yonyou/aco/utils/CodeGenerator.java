@@ -28,11 +28,8 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
  * <p> 类调用特殊情况：无
  */
 public class CodeGenerator {
-
 	/**
-	 * <p>
 	 * 读取控制台内容
-	 * </p>
 	 */
 	public static String scanner(String tip) {
 		Scanner scanner = new Scanner(System.in);
