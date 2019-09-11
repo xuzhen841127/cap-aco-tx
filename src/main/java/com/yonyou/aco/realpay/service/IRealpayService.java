@@ -18,4 +18,6 @@ public interface IRealpayService extends IService<RealpayEntity> {
 	public List<RealpayEntity> findRealpays(String mobile, String title, Integer pageIndex, Integer pageSize);
 
 	public List<RealpayEntity> findRealpayUnNotice();
+
+	public void updateRealpayNotice(String isSendNotice, String realpayId);
 }

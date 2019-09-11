@@ -277,6 +277,24 @@
 			});
 
 			view = app.views.create('.view-main');
+			var viewType = '${viewType}';
+			if (viewType == 'realpayView') {
+				view.router.navigate({
+					name: 'realpayDetailPage',
+					params: {
+						realpayId: '${realpayId}', 
+						mobile: '${mobile}',
+					}
+				});
+			} else if (viewType == 'planView') {
+				view.router.navigate({
+					name: 'planDetailPage',
+					params: {
+						planId: '${planId}', 
+						mobile: '${mobile}',
+					}
+				});
+			}
 
 			// 定义全局网络异常消息
 			var notifiNetError = app.notification.create({

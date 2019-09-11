@@ -3,6 +3,7 @@ package com.yonyou.aco.realpay.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yonyou.aco.realpay.entity.RealpayEntity;
@@ -19,4 +20,8 @@ public interface RealpayMapper extends BaseMapper<RealpayEntity> {
 	public Integer findRealpayTotal(RealpayEntity realpayEntity);
 
 	public List<RealpayEntity> findRealpays(String title, Integer pageIndex, Integer pageSize);
+	
+	public List<RealpayEntity> findRealpayUnNotice();
+	
+	public void updateRealpayNotice(@Param("isSendNotice") String isSendNotice, @Param("realpayId") String realpayId);
 }

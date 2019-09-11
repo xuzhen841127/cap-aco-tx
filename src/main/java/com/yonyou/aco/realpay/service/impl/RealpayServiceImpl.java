@@ -74,9 +74,15 @@ public class RealpayServiceImpl extends ServiceImpl<RealpayMapper, RealpayEntity
 	 * @return List<RealpayEntity>
 	 */
 	public List<RealpayEntity> findRealpayUnNotice() {
-		QueryWrapper<RealpayEntity> queryWrapper = new QueryWrapper<RealpayEntity>();
-		queryWrapper.eq("status", "1");
-		queryWrapper.eq("is_send_notice", "0");
-		return this.baseMapper.selectList(queryWrapper);
+		 QueryWrapper<RealpayEntity> queryWrapper = new QueryWrapper<RealpayEntity>();
+		 queryWrapper.eq("status", "1"); queryWrapper.eq("is_send_notice", "0");
+		 return this.baseMapper.selectList(queryWrapper);
+	}
+
+	/**
+	 * 修改拨款计划已发送待办提醒
+	 */
+	public void updateRealpayNotice(String isSendNotice, String realpayId) {
+		this.baseMapper.updateRealpayNotice(isSendNotice, realpayId);
 	}
 }

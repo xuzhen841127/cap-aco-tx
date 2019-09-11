@@ -1,3 +1,5 @@
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -5,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.yonyou.aco.Application;
+import com.yonyou.aco.realpay.entity.RealpayEntity;
 import com.yonyou.aco.realpay.service.IRealpayService;
 
 @RunWith(SpringRunner.class)
@@ -31,7 +34,10 @@ public class RealpayTest {
 		 * Page<RealpayEntity>(pageIndex, pageSize);
 		 */
 
-		int result = realpayService.findRealpayTotal("18611123594");
-		System.out.println(result);
+		List<RealpayEntity> list = realpayService.findRealpayUnNotice();
+		System.out.println(list.size());
+		//String isSendNotice = "1";
+		//String realpayId = "100021";
+		//realpayService.updateRealpayNotice(isSendNotice, realpayId);
 	}
 }

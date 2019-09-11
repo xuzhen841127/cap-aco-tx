@@ -4,28 +4,21 @@
 	<select id="findRealpayTotal" resultType="java.lang.Integer" parameterType="com.yonyou.aco.realpay.entity.RealpayEntity">
 		SELECT COUNT(*) FROM DD_REALPAY WHERE USER_CODE=#{userCode}
 	</select>
-	
-	<!-- <select id="selectCountryPlusById" resultMap="countryPlusResultMap">
-        SELECT R.REALPAY_ID.country_id as country_id,
-                country,
-                country.last_update as last_update,
-                city_id,
-                city,
-                city.country_id as city_country_id,
-                city.last_update as city_last_update
-        from country left join city on  country.country_id = city.country_id
-        where country.country_id=#{id}
-    </select>
-    
-    <resultMap id="countryPlusResultMap" type="canger.study.chapter04.bean.CountryPlus">
-        <id column="country_id" property="id"/>
-        <result column="country" property="name"/>
-        <result column="last_update" property="lastUpdate"/>
-        <collection property="cityList" ofType="canger.study.chapter04.bean.City">
-            <id column="city_id" property="id"/>
-            <result column="city" property="name"/>
-            <result column="city_country_id" property="countryId"/>
-            <result column="city_last_update" property="lastUpdate"/>
-        </collection>
-    </resultMap> -->
+
+	<update id="updateRealpayNotice">
+		UPDATE DD_REALPAY SET IS_SEND_NOTICE=#{isSendNotice} WHERE REALPAY_ID=#{realpayId}
+	</update>
+
+	<!-- <select id="findRealpayUnNotice" resultMap="RealpayEntityMap">
+		SELECT REALPAY_ID, USER_CODE, MENU_NAME FROM DD_REALPAY DR, DD_USER DU WHERE DR.USER_CODE=DU.TELEPHONE
+	</select>
+	<resultMap type="com.yonyou.aco.realpay.entity.RealpayEntity" id="RealpayEntityMap">
+		<id column="realpay_id" property="realpayId" />
+		<result column="user_code" property="userCode" />
+		<result column="menu_name" property="menuName" />
+		<association property="userEntity" select="com.yonyou.aco.user.entity.UserEntity">
+			<id column="telephone" property="telephone"/>
+			<result column="dd_user_id" property="dd_user_id" />
+		</association>
+	</resultMap> -->
 </mapper>

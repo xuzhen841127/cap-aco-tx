@@ -1,10 +1,12 @@
 package com.yonyou.aco.plan.mapper;
 
-import com.yonyou.aco.plan.entity.PlanEntity;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yonyou.aco.plan.entity.PlanEntity;
 
 /**
  * <p>概 述：用款计划Mapper接口类
@@ -16,4 +18,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 @Mapper
 public interface PlanMapper extends BaseMapper<PlanEntity> {
 	public Integer findPlanTotal(PlanEntity planEntity);
+	
+	public List<PlanEntity> findPlans(String title, Integer pageIndex, Integer pageSize);
+	
+	public List<PlanEntity> findPlanUnNotice();
+	
+	public void updatePlanNotice(@Param("isSendNotice") String isSendNotice, @Param("realpayId") String planId);
 }

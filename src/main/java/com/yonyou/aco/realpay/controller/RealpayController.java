@@ -19,12 +19,11 @@ import com.yonyou.aco.utils.IProtocolUtils;
 import net.sf.json.JSONArray;
 
 /**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author 徐真
- * @since 2019-08-29
+ * <p>概 述：拨款计划Controller类
+ * <p>功 能：拨款计划Controller类
+ * <p>作 者：徐真
+ * <p>创建时间：2019年8月30日
+ * <p>类调用特殊情况：无
  */
 @RestController
 @RequestMapping("/realpayController")
@@ -48,6 +47,24 @@ public class RealpayController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("mobile", mobile);
 		mv.setViewName("/realpay/realpay-home");
+		return mv;
+	}
+
+	/**
+	 * 钉钉待办跳转
+	 * 
+	 * @param id 主键ID
+	 * @return
+	 */
+	@RequestMapping("/toRealpayHomeView")
+	public ModelAndView toRealpayHomeView(
+			@RequestParam(value = "mobile", required = true) String mobile,
+			@RequestParam(value = "realpayId", required = true) String realpayId) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("mobile", mobile);
+		mv.addObject("realpayId", realpayId);
+		mv.addObject("viewType", "realpayView");
+		mv.setViewName("/ding/ding-home");
 		return mv;
 	}
 

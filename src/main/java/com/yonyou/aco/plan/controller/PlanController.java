@@ -53,6 +53,25 @@ public class PlanController {
 	}
 
 	/**
+	 * 钉钉待办跳转
+	 * 
+	 * @param id 主键ID
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/toPlanHomeView")
+	public ModelAndView toRealpayHomeView(
+			@RequestParam(value = "mobile", required = true) String mobile,
+			@RequestParam(value = "planId", required = true) String planId) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("mobile", mobile);
+		mv.addObject("planId", planId);
+		mv.addObject("viewType", "planView");
+		mv.setViewName("/ding/ding-home");
+		return mv;
+	}
+
+	/**
 	 * 获取列表数据
 	 * 
 	 * @param mobile	手机号

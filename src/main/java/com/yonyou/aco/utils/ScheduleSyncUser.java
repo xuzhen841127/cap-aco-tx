@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -29,9 +28,8 @@ public class ScheduleSyncUser {
 	@Autowired
 	IUserService userService;
 
-	// 3.添加定时任务
-	@Scheduled(cron = "0 */1 * * * ?")
-	// 或直接指定时间间隔，例如：5秒
+	// 添加定时任务每天23点执行一次：0 0 23 * * ?
+	@Scheduled(cron = "0 0 23 * * ?")
 	private void configureTasks() {
 		logger.info("-----------------开始同步部门及用户信息-----------------");
 		List<Department> department = DingService.findAllDepts().stream().filter(obj -> obj.getId() == 127841811).collect(Collectors.toList());

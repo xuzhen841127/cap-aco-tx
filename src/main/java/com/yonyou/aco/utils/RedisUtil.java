@@ -1,20 +1,19 @@
 package com.yonyou.aco.utils;
 
 import java.util.List;
-
 import java.util.Map;
-
 import java.util.Set;
-
 import java.util.concurrent.TimeUnit;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.Resource;
+
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 @Component
 public final class RedisUtil {
-	@Autowired
+	@Resource
 	private RedisTemplate<String, Object> redisTemplate;
 
 	// =============================common============================
@@ -436,6 +435,15 @@ public final class RedisUtil {
 	public List<Object> lGet(String key, long start, long end) {
 		try {
 			return redisTemplate.opsForList().range(key, start, end);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<Object> lGet(String key) {
+		try {
+			return (List<Object>) redisTemplate.opsForList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

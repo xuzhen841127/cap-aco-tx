@@ -3,6 +3,7 @@ package com.yonyou.aco.ding;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jdt.internal.compiler.batch.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +24,7 @@ import com.dingtalk.api.response.OapiUserGetuserinfoResponse;
 import com.dingtalk.api.response.OapiUserListbypageResponse;
 import com.dingtalk.api.response.OapiUserListbypageResponse.Userlist;
 import com.taobao.api.ApiException;
+import com.yonyou.aco.utils.PlatformConfigUtil;
 
 /**
  * <p> 概述：钉钉服务接口 Service类
@@ -44,10 +46,10 @@ public class DingService {
 		OapiGettokenRequest request = null;
 
 		try {
-			DefaultDingTalkClient client = new DefaultDingTalkClient(DingUtils.getServerUrl() + "/gettoken");
+			DefaultDingTalkClient client = new DefaultDingTalkClient(PlatformConfigUtil.getString("SERVER_URL") + "/gettoken");
 			request = new OapiGettokenRequest();
-			request.setAppkey(DingUtils.getAppKey());
-			request.setAppsecret(DingUtils.getAppSecret());
+			request.setAppkey(PlatformConfigUtil.getString("APP_KEY"));
+			request.setAppsecret(PlatformConfigUtil.getString("APP_SECRET"));
 			request.setHttpMethod("GET");
 			response = (OapiGettokenResponse) client.execute(request);
 
@@ -70,13 +72,13 @@ public class DingService {
 
 		try {
 			String accessToken = DingService.getToken();
-			DingTalkClient client = new DefaultDingTalkClient(DingUtils.getServerUrl() + "/user/getuserinfo");
+			DingTalkClient client = new DefaultDingTalkClient(PlatformConfigUtil.getString("SERVER_URL") + "/user/getuserinfo");
 			OapiUserGetuserinfoRequest userInfoRequest = new OapiUserGetuserinfoRequest();
 			userInfoRequest.setCode(requestAuthCode);
 			userInfoRequest.setHttpMethod("GET");
 			OapiUserGetuserinfoResponse userInfoResponse = client.execute(userInfoRequest, accessToken);
 
-			client = new DefaultDingTalkClient(DingUtils.getServerUrl() + "/user/get");
+			client = new DefaultDingTalkClient(PlatformConfigUtil.getString("SERVER_URL") + "/user/get");
 			OapiUserGetRequest userRequest = new OapiUserGetRequest();
 			userRequest.setUserid(userInfoResponse.getUserid());
 			userRequest.setHttpMethod("GET");
@@ -102,7 +104,7 @@ public class DingService {
 
 		try {
 			String accessToken = DingService.getToken();
-			DingTalkClient client = new DefaultDingTalkClient(DingUtils.getServerUrl() + "/user/getuserinfo");
+			DingTalkClient client = new DefaultDingTalkClient(PlatformConfigUtil.getString("SERVER_URL") + "/user/getuserinfo");
 			OapiUserGetuserinfoRequest userInfoRequest = new OapiUserGetuserinfoRequest();
 			userInfoRequest.setCode(requestAuthCode);
 			userInfoRequest.setHttpMethod("GET");
@@ -128,7 +130,7 @@ public class DingService {
 		List<Userlist> userList = new ArrayList<Userlist>();
 
 		try {
-			DingTalkClient client = new DefaultDingTalkClient(DingUtils.getServerUrl() + "/user/listbypage");
+			DingTalkClient client = new DefaultDingTalkClient(PlatformConfigUtil.getString("SERVER_URL") + "/user/listbypage");
 			OapiUserListbypageRequest request = new OapiUserListbypageRequest();
 			request.setDepartmentId(deptId);
 			request.setOffset(0L);
@@ -156,7 +158,7 @@ public class DingService {
 		List<Department> departmentList = new ArrayList<Department>();
 
 		try {
-			DingTalkClient client = new DefaultDingTalkClient(DingUtils.getServerUrl() + "/department/list");
+			DingTalkClient client = new DefaultDingTalkClient(PlatformConfigUtil.getString("SERVER_URL") + "/department/list");
 			OapiDepartmentListRequest request = new OapiDepartmentListRequest();
 			request.setHttpMethod("GET");
 
@@ -178,14 +180,14 @@ public class DingService {
 	 * @param text
 	 * @param url
 	 */
-	public static void sendNotice(String userIds, String title, String text, String url) {
+	public static OapiMessageCorpconversationAsyncsendV2Response sendNotice(String userIds, String title, String text, String url) {
 		OapiMessageCorpconversationAsyncsendV2Response response = null;
 
 		try {
-			DingTalkClient client = new DefaultDingTalkClient(DingUtils.getServerUrl() + "/topapi/message/corpconversation/asyncsend_v2");
+			DingTalkClient client = new DefaultDingTalkClient(PlatformConfigUtil.getString("SERVER_URL") + "/topapi/message/corpconversation/asyncsend_v2");
 			OapiMessageCorpconversationAsyncsendV2Request request = new OapiMessageCorpconversationAsyncsendV2Request();
 			request.setUseridList(userIds);
-			request.setAgentId(DingUtils.getAgentId());
+			request.setAgentId(Long.valueOf(PlatformConfigUtil.getString("AGENT_ID")));
 			request.setToAllUser(false);
 
 			OapiMessageCorpconversationAsyncsendV2Request.Msg msg = new OapiMessageCorpconversationAsyncsendV2Request.Msg();
@@ -199,14 +201,11 @@ public class DingService {
 
 			String accessToken = DingService.getToken();
 			response = client.execute(request,accessToken);
-			if (response.getErrorCode().equals("0")) {
-				logger.info("通知发送成功" + msg.getLink().getTitle());
-			} else {
-				logger.info("通知发送失败" + response.getErrorCode() + "-" +response.getErrmsg());
-			}
 		} catch (ApiException e) {
 			logger.info("系统错误: " + e.getErrCode() + "-" +e.getErrMsg());
 			e.printStackTrace();
 		}
+
+		return response;
 	}
 }

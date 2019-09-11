@@ -1,6 +1,7 @@
 package com.yonyou.aco.realpay.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.yonyou.aco.user.entity.UserEntity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
