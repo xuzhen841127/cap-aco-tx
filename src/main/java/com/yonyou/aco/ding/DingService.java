@@ -3,7 +3,6 @@ package com.yonyou.aco.ding;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jdt.internal.compiler.batch.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,7 +85,7 @@ public class DingService {
 
 			logger.info("【获取钉钉用户信息成功】" + response.getName() + "-" + response.getMobile() + "-" + response.getDingId());
 		} catch (ApiException e) {
-			logger.info("【获取钉钉用户信息失败】" + response.getErrorCode() + "-" + response.getErrmsg());
+			logger.info("【获取钉钉用户信息失败】" + e.getErrCode()+ "-" + e.getErrMsg());
 			e.printStackTrace();
 		}
 

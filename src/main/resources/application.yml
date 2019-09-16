@@ -1,5 +1,5 @@
 server:
-  port: 5222
+  port: 7070
   servlet:
     context-path: /cap-aco-tx
 spring:

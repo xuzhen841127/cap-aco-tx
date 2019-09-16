@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -25,10 +26,13 @@ public class ScheduleSendNotice extends BaseController {
 
 	// private RedisUtil redisUtil = new RedisUtil();
 
+	@Autowired
+	ExecutorPool executorPool;
+
 	private List<UserEntity> userList = null;
 
 	// 添加定时任务, 每分钟刷新一次待办
-	@Scheduled(cron = "0 */1 * * * ?")
+	//@Scheduled(cron = "0 */2 * * * ?")
 	private void configureTasks() {
 		// 拨款计划发送待办通知
 		realpaySendNotice();
@@ -41,12 +45,6 @@ public class ScheduleSendNotice extends BaseController {
 	 * 拨款计划发送待办通知
 	 */
 	public void realpaySendNotice() {
-		String realpayId = "";
-		String mobile = "";
-		String title = "";
-		String text = "";
-		String url = "";
-
 		List<RealpayEntity> realpayList = realpayService.findRealpayUnNotice();
 		for (RealpayEntity realpayEntity : realpayList) {
 			// 发送拨款计划待办提醒
@@ -54,21 +52,32 @@ public class ScheduleSendNotice extends BaseController {
 			if (ddUserId == null) {
 				continue;
 			}
-			realpayId = realpayEntity.getRealpayId();
-			mobile = realpayEntity.getUserCode();
-			title = realpayEntity.getMenuName();
-			text = realpayEntity.getRemark();
-			url = PlatformConfigUtil.getString("APP_URL") + "/realpayController/toRealpayHomeView?mobile=" + mobile + "&realpayId=" + realpayId;
+			String realpayId = realpayEntity.getRealpayId();
+			String mobile = realpayEntity.getUserCode();
+			String title = realpayEntity.getMenuName();
+			String text = realpayEntity.getRemark();
+			String url = PlatformConfigUtil.getString("APP_URL") + "/realpayController/toRealpayHomeView?mobile=" + mobile + "&realpayId=" + realpayId;
 			System.out.println(url);
-			OapiMessageCorpconversationAsyncsendV2Response response = DingService.sendNotice(ddUserId, title, text, url);
 
 			// 更新当前拨款计划已发送待办通知
-			if (response.getErrorCode().equals("0")) {
-				realpayService.updateRealpayNotice("1", realpayEntity.getRealpayId());
-				logger.info("已发送待办通知给-" + realpayEntity.getUserName() + "-" + title);
-			} else {
-				logger.info("发送通知失败-" + realpayEntity.getUserName() + "-" + title + "错误消息：" + response.getErrmsg());
-			}
+			executorPool.getExecutorService().execute(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						Thread.sleep(5000);
+
+						OapiMessageCorpconversationAsyncsendV2Response response = DingService.sendNotice(ddUserId, title, text, url);
+						if (response.getErrorCode().equals("0")) {
+							realpayService.updateRealpayNotice("1", realpayEntity.getRealpayId());
+							logger.info("已发送待办通知给-" + realpayEntity.getUserName() + "-" + title);
+						} else {
+							logger.info("发送通知失败-" + realpayEntity.getUserName() + "-" + title + "错误消息：" + response.getErrmsg());
+						}
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		}
 	}
 
@@ -95,9 +104,9 @@ public class ScheduleSendNotice extends BaseController {
 			text = planEntity.getRemark();
 			url = PlatformConfigUtil.getString("APP_URL") + "/realpayController/toPlanHomeView?mobile=" + mobile + "&planId=" + planId;
 			System.out.println(url);
-			OapiMessageCorpconversationAsyncsendV2Response response = DingService.sendNotice(ddUserId, title, text, url);
 
 			// 更新当前用款计划已发送待办通知
+			OapiMessageCorpconversationAsyncsendV2Response response = DingService.sendNotice(ddUserId, title, text, url);
 			if (response.getErrorCode().equals("0")) {
 				planService.updatePlanNotice("1", planId);
 				logger.info("已发送待办通知给-" + planEntity.getUserName() + "-" + title);
@@ -119,7 +128,7 @@ public class ScheduleSendNotice extends BaseController {
 		}
 
 		List<UserEntity> resultList = userList.stream().filter(obj -> obj.getTelephone().equals(userCode)).collect(Collectors.toList());
-		if (resultList.size() == 1) {
+		if (resultList.size() >= 1) {
 			return resultList.get(0).getDdUserId();
 		}
 

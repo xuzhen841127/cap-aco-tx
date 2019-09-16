@@ -17,7 +17,10 @@ import com.yonyou.aco.utils.RedisUtil;
  */
 public class BaseController {
 	@Autowired
-	ExecutorPool executorPool;
+	public RedisUtil redisUtil;
+
+	@Autowired
+	public ExecutorPool executorPool;
 
 	@Autowired
 	public IPlanService planService;

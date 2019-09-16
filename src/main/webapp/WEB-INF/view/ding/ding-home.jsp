@@ -149,7 +149,7 @@
 				    	var self = this;
 						// 通过该免登授权码获取用户身份
 				    	/* dd.runtime.permission.requestAuthCode({
-					        corpId: 'ding042f53d36f0e8f3235c2f4657eb6378f',
+					        corpId: '${corpId }',
 					        onSuccess: function (info) {
 					        	if (info.code == null || info.code == '') {
 					        		app.toast.show({ text : '登录失败，请联系系统管理员', position: 'center', closeTimeout : 3000 });

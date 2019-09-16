@@ -29,7 +29,7 @@ public class ScheduleSyncUser {
 	IUserService userService;
 
 	// 添加定时任务每天23点执行一次：0 0 23 * * ?
-	@Scheduled(cron = "0 0 23 * * ?")
+	//@Scheduled(cron = "0 */5 * * * ?")
 	private void configureTasks() {
 		logger.info("-----------------开始同步部门及用户信息-----------------");
 		List<Department> department = DingService.findAllDepts().stream().filter(obj -> obj.getId() == 127841811).collect(Collectors.toList());

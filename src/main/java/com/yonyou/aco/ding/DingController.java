@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dingtalk.api.response.OapiUserGetResponse;
 import com.yonyou.aco.common.BaseController;
 import com.yonyou.aco.utils.IProtocolUtils;
-import com.yonyou.aco.utils.RedisUtil;
+import com.yonyou.aco.utils.PlatformConfigUtil;
 
 import net.sf.json.JSONArray;
 
@@ -30,9 +30,6 @@ import net.sf.json.JSONArray;
 @Controller
 @RequestMapping("/dingController")
 public class DingController extends BaseController {
-	
-	public RedisUtil redisUtil = new RedisUtil();
-	
 	private IProtocolUtils ipu;
 
 	public DingController() {
@@ -49,7 +46,13 @@ public class DingController extends BaseController {
 	public ModelAndView toDingHome(HttpServletRequest request) {
 		// 跳转到钉钉主页
 		ModelAndView mv = new ModelAndView();
-		redisUtil.set("myname", "xuzhen");
+		redisUtil.set("mywife", "xuwenjing");
+		redisUtil.set("mygirl", "xumoqiao");
+		
+		String mywife = redisUtil.get("mywife").toString();
+		System.out.println(mywife);
+		
+		mv.addObject("corpId", PlatformConfigUtil.getString("CORP_ID"));
 		mv.addObject("request", request);
 		mv.setViewName("/ding/ding-home");
 		return mv;

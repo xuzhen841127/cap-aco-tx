@@ -27,6 +27,7 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
  * <p> 创建时间：2019年9月7日
  * <p> 类调用特殊情况：无
  */
+@SuppressWarnings("resource")
 public class CodeGenerator {
 	/**
 	 * 读取控制台内容

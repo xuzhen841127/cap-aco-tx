@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 @Component
 @Scope
 public class ExecutorPool {
-	private static ExecutorService executorService = Executors.newFixedThreadPool(100);
+	private static ExecutorService executorService = Executors.newFixedThreadPool(10);
 
 	public ExecutorService getExecutorService() {
 		return executorService;
