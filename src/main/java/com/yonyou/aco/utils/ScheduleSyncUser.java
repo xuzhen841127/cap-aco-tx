@@ -1,7 +1,6 @@
 package com.yonyou.aco.utils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,11 +29,14 @@ public class ScheduleSyncUser {
 
 	// 添加定时任务每天23点执行一次：0 0 23 * * ?
 	//@Scheduled(cron = "0 */5 * * * ?")
+	@Scheduled(cron = "0 0 23 * * ?")
 	private void configureTasks() {
 		logger.info("-----------------开始同步部门及用户信息-----------------");
-		List<Department> department = DingService.findAllDepts().stream().filter(obj -> obj.getId() == 127841811).collect(Collectors.toList());
+		List<Department> department = DingService.findAllDepts();//.stream().filter(obj -> obj.getId() == 127841811).collect(Collectors.toList());
 
-		if (department.size() == 1) {
+		for (Department depart : department) {
+			logger.info("[开始同步>>>>" + depart.getName() + "--的部门用户");
+
 			List<Userlist> ddUserList = DingService.findUsersByDeptId(department.get(0).getId());
 			ddUserList.forEach(dduser -> logger.info("[当前用户名：]" + dduser.getName() + "[手机号：]" + dduser.getMobile() + "[钉钉userIdId]" + dduser.getUserid()));
 
@@ -47,8 +49,10 @@ public class ScheduleSyncUser {
 					logger.info("[同步失败：]"  + dduser.getName() + "[手机号为：]" + dduser.getMobile() + "[UserId:]" + dduser.getUserid());
 				}
 			}
+			
+			logger.info("[结束同步<<<" + depart.getName() + "--的部门用户");
 		}
-
+		
 		logger.info("-----------------结束同步部门及用户信息-----------------");
 	}
 }

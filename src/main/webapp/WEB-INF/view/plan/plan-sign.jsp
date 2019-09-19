@@ -108,7 +108,7 @@
 				var suggestion = $$('#wordSignTextArea').val();
 				app.dialog.confirm('确定送交吗？', '提示', function() {
 					app.request({
-						url : '/planController/doSendPlan',
+						url : CTX + '/planController/doSendPlan',
 						data: {
 							planId: '${planId}', 
 							mobile: '${mobile}',
@@ -123,10 +123,17 @@
 								var items = eval('(' + data.items + ')');
 								if (items.length > 0) {
 									if (items[0]) {
+										// 移除列表记录
 										$$('#plan_${planId}').remove();
 
+										// 成功后修改待办数量
+										var modelNum = $$('#modelId_1001').text();
+										$$('#modelId_1001').text(modelNum - 1);
+
+										// 清空缓存
 										localforage.removeItem(self.WORD_KEY);
 
+										// 跳转到列表页
 										var url = '/toPlanHome/${mobile}';
 										view.router.back(url, {
 											reloadCurrent: false,

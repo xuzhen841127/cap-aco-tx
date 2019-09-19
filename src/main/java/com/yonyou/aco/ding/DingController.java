@@ -46,11 +46,11 @@ public class DingController extends BaseController {
 	public ModelAndView toDingHome(HttpServletRequest request) {
 		// 跳转到钉钉主页
 		ModelAndView mv = new ModelAndView();
-		redisUtil.set("mywife", "xuwenjing");
-		redisUtil.set("mygirl", "xumoqiao");
+		//redisUtil.set("mywife", "xuwenjing");
+		//redisUtil.set("mygirl", "xumoqiao");
 		
-		String mywife = redisUtil.get("mywife").toString();
-		System.out.println(mywife);
+		//String mywife = redisUtil.get("mywife").toString();
+		//System.out.println(mywife);
 		
 		mv.addObject("corpId", PlatformConfigUtil.getString("CORP_ID"));
 		mv.addObject("request", request);
@@ -81,7 +81,7 @@ public class DingController extends BaseController {
 	}
 
 	/**
-	   *   获取用户工作模块
+	 *   获取用户工作模块
 	 *   
 	 * @param userId 用户ID
 	 * @return
@@ -104,7 +104,7 @@ public class DingController extends BaseController {
 			modelList.add(model);
 			model = new DingModel();
 			model.setModId("1002");
-			model.setModName("拨款计划");
+			model.setModName("拨款申请");
 			model.setModUrl("/toRealpayHome/" + mobile);
 			modelList.add(model);
 

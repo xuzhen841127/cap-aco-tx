@@ -148,7 +148,7 @@
 				    getAuthCode: function () {
 				    	var self = this;
 						// 通过该免登授权码获取用户身份
-				    	/* dd.runtime.permission.requestAuthCode({
+				    	/*dd.runtime.permission.requestAuthCode({
 					        corpId: '${corpId }',
 					        onSuccess: function (info) {
 					        	if (info.code == null || info.code == '') {
@@ -158,7 +158,7 @@
 					        		self.methods.getUserInfo(info.code);
 					        	}
 					  		}
-						}); */
+						});*/
 
 						self.methods.loadModelList('13806715255');
 				    },
@@ -244,6 +244,8 @@
 				    			  	for (var j = 0; j < modelList.length; j++) {
 				    			  		var model = modelList[j];
 										var todoNum = numMap[model.modId];
+										var modNumId = 'modelId_' + model.modId;
+
 										li += '<li>' +
 									          	'<a href="'+ model.modUrl + '" class="item-link item-content">' +
 													'<div class="item-inner ">' +
@@ -252,7 +254,7 @@
 																'<span class="badge color-blue" style="margin-bottom: 3px;border-radius: 0px;">'+ (j + 1) +'</span>&nbsp;' + model.modName + 
 															'</div>' +
 															'<div class="item-after">' +
-																'<span class="badge color-red" style="line-height: normal;">'+ todoNum +'</span>' +
+																'<span class="badge color-red" style="line-height: normal;" id="'+ modNumId +'">'+ todoNum +'</span>' +
 															'</div>' +
 														'</div>' +
 													'</div>' +

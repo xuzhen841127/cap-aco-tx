@@ -16,8 +16,8 @@ import com.yonyou.aco.utils.RedisUtil;
  * <p> 类调用特殊情况：无
  */
 public class BaseController {
-	@Autowired
-	public RedisUtil redisUtil;
+	//@Autowired
+	//public RedisUtil redisUtil;
 
 	@Autowired
 	public ExecutorPool executorPool;

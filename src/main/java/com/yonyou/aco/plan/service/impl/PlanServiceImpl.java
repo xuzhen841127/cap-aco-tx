@@ -51,7 +51,7 @@ public class PlanServiceImpl extends ServiceImpl<PlanMapper, PlanEntity> impleme
 		QueryWrapper<PlanEntity> queryWrapper = new QueryWrapper<PlanEntity>();
 		queryWrapper.eq("status", "1");
 		queryWrapper.eq("user_code", mobile);
-		queryWrapper.and(wrapper -> wrapper.like("menu_name", title).or().like("remark", title));
+		queryWrapper.and(wrapper -> wrapper.like("menu_name", title).or().like("remark", title).or().like("agency_code", title));
 		this.baseMapper.selectPage(page, queryWrapper);
 		List<PlanEntity> planList = page.getRecords();
 		return planList;
