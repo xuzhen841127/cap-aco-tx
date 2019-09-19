@@ -10,12 +10,11 @@ import com.yonyou.aco.user.mapper.UserMapper;
 import com.yonyou.aco.user.service.IUserService;
 
 /**
- * <p>
- *  服务实现类
- * </p>
- *
- * @author 徐真
- * @since 2019-09-04
+ * <p>概 述：用户Dao接口实现类
+ * <p>功 能：用户Dao接口实现类
+ * <p>作 者：徐真
+ * <p>创建时间：2019年8月30日
+ * <p>类调用特殊情况：无
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> implements IUserService {

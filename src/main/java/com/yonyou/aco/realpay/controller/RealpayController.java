@@ -19,8 +19,8 @@ import com.yonyou.aco.utils.IProtocolUtils;
 import net.sf.json.JSONArray;
 
 /**
- * <p>概 述：拨款计划Controller类
- * <p>功 能：拨款计划Controller类
+ * <p>概 述：拨款申请Controller类
+ * <p>功 能：拨款申请Controller类
  * <p>作 者：徐真
  * <p>创建时间：2019年8月30日
  * <p>类调用特殊情况：无

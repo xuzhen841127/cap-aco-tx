@@ -1,21 +1,21 @@
 package com.yonyou.aco.realpay.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.yonyou.aco.user.entity.UserEntity;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * <p>
- *  实体类
- * </p>
- *
- * @author 徐真
- * @since 2019-08-29
+ * <p>概 述：拨款申请实体类
+ * <p>功 能：拨款申请实体类
+ * <p>作 者：徐真
+ * <p>创建时间：2019年8月30日
+ * <p>类调用特殊情况：无
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

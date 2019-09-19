@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yonyou.aco.realpay.entity.RealpayEntity;
 
 /**
- * <p>概 述：拨款计划Server接口类
- * <p>功 能：拨款计划Server接口类
+ * <p>概 述：拨款申请Server接口类
+ * <p>功 能：拨款申请Server接口类
  * <p>作 者：徐真
  * <p>创建时间：2019年8月30日
  * <p>类调用特殊情况：无
